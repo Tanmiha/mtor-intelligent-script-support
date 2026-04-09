@@ -9,22 +9,23 @@ load_dotenv()
 AZURE_SEARCH_ENDPOINT = os.getenv("AZURE_SEARCH_ENDPOINT")
 AZURE_SEARCH_KEY = os.getenv("AZURE_SEARCH_KEY")
 AZURE_SEARCH_INDEX_NAME = "it-ticket-solutions-index"
-AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
-AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
-AZURE_OPENAI_DEPLOYMENT = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+
+HF_TOKEN = os.getenv("HF_TOKEN")
+API_BASE_URL = os.getenv("API_BASE_URL")
+MODEL_NAME = os.getenv("MODEL_NAME")
 AZURE_OPENAI_API_VERSION = "2024-02-15-preview"
 
 # Clients
 openai_client = AzureOpenAI(
-    api_key=AZURE_OPENAI_API_KEY,
+    api_key=HF_TOKEN,
     api_version=AZURE_OPENAI_API_VERSION,
-    azure_endpoint=AZURE_OPENAI_ENDPOINT
+    azure_endpoint=API_BASE_URL
 )
 
 def embed_text(text: str):
     response = openai_client.embeddings.create(
         input=[text],
-        model=AZURE_OPENAI_DEPLOYMENT
+        model=MODEL_NAME
     )
     return response.data[0].embedding
 

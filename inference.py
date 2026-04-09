@@ -9,9 +9,9 @@ load_dotenv()
 # --- HYBRID ENVIRONMENT VARIABLES ---
 # If the Hackathon system injects its variables, they take priority.
 # If they are missing (like on your local machine), it falls back to your Azure .env values.
-API_BASE_URL = os.getenv("API_BASE_URL", os.getenv("AZURE_OPENAI_ENDPOINT", "https://api.openai.com/v1"))
-MODEL_NAME = os.getenv("MODEL_NAME", os.getenv("AZURE_DEPLOYMENT_NAME", "gpt-4o"))
-HF_TOKEN = os.getenv("HF_TOKEN", os.getenv("AZURE_OPENAI_API_KEY"))
+API_BASE_URL = os.getenv("API_BASE_URL", os.getenv("AZURE_OPENAI_ENDPOINT", "https://mta-azoi-intelligent-ticket.openai.azure.com/"))
+MODEL_NAME = os.getenv("MODEL_NAME", "mtor-gpt")
+HF_TOKEN = os.getenv("HF_TOKEN")
 
 if HF_TOKEN is None:
     raise ValueError("HF_TOKEN environment variable is required (or AZURE_OPENAI_API_KEY for local testing)")
